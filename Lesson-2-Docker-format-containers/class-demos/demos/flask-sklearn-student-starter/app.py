@@ -13,10 +13,10 @@ LOG.setLevel(logging.INFO)
 def scale(payload):
     """Scales Payload"""
 
-    LOG.info(f"Scaling Payload: {payload}")
-    scaler = StandardScaler().fit(payload)
-    scaled_adhoc_predict = scaler.transform(payload)
-    return scaled_adhoc_predict
+LOG.info(f"Scaling Payload: {payload}")
+scaler = StandardScaler().fit(payload)
+scaled_adhoc_predict = scaler.transform(payload)
+return scaled_adhoc_predict
 
 @app.route("/")
 def home():
@@ -53,8 +53,7 @@ def predict():
     { "prediction": [ 20.35373177134412 ] }
 
     """
-
-
+    
     json_payload = request.json
     LOG.info(f"JSON payload: {json_payload}")
     inference_payload = pd.DataFrame(json_payload)
